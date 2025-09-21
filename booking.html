@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Car Wash | WashX - Schedule Professional Doorstep Service</title>
+    <meta name="description" content="Book professional doorstep car wash service with WashX. Choose your service, select date & time, and get your car cleaned at your convenience. Starting at ₹199.">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Book Car Wash Service | WashX">
+    <meta property="og:description" content="Schedule professional doorstep car wash service with flexible timing and payment options.">
+    <meta property="og:image" content="/static/booking-page.jpg">
+    <meta property="og:url" content="https://washx.com/booking">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        .booking-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .sticky-cta {
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        .service-option {
+            transition: all 0.3s ease;
+        }
+        .service-option.selected {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+        }
+        .error-message {
+            color: #EF4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .success-message {
+            color: #10B981;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-input {
+            border: 2px solid #E5E7EB;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        .form-input:focus {
+            border-color: #3B82F6;
+            outline: none;
+        }
+        .form-input.error {
+            border-color: #EF4444;
+        }
+        .form-input.success {
+            border-color: #10B981;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600">WashX</h1>
+                        <p class="text-xs text-gray-500">Xtra Clean. Xtra Fast.</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="offers.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Offers</a>
+                    <a href="testimonials.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Reviews</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="booking.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-blue-600">Book Now</a>
+                    <a href="tel:+918805173650" class="text-blue-600 hover:text-blue-800 font-semibold">📞 Emergency</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-24 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-bold mb-4" data-aos="fade-up">Book Your Car Wash</h1>
+            <p class="text-xl mb-4" data-aos="fade-up" data-aos-delay="200">Schedule a professional car wash at your convenience</p>
+            <div class="flex justify-center items-center space-x-6 text-sm">
+                <span class="flex items-center"><i data-feather="check-circle" class="w-4 h-4 mr-2"></i>45-60 minutes service</span>
+                <span class="flex items-center"><i data-feather="check-circle" class="w-4 h-4 mr-2"></i>Professional equipment</span>
+                <span class="flex items-center"><i data-feather="check-circle" class="w-4 h-4 mr-2"></i>100% satisfaction guaranteed</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Booking Form -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Service Details</h2>
+
+                        <form id="bookingForm" class="space-y-6">
+                            <!-- Service Selection -->
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Choose Your Service *</label>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="basic" data-price="199">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h3 class="font-semibold">Basic Exterior Wash</h3>
+                                            <span class="text-2xl font-bold text-blue-600">₹199</span>
+                                        </div>
+                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                                            <li>✓ Exterior foam wash</li>
+                                            <li>✓ Glass cleaning</li>
+                                            <li>✓ Tyre cleaning & shine</li>
+                                        </ul>
+                                        <p class="text-xs text-gray-500">⏱️ Duration: 30-40 minutes</p>
+                                    </div>
+
+                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer relative" data-service="full" data-price="299">
+                                        <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">POPULAR</div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h3 class="font-semibold">Full Interior + Exterior</h3>
+                                            <span class="text-2xl font-bold text-blue-600">₹299</span>
+                                        </div>
+                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                                            <li>✓ Everything in Basic</li>
+                                            <li>✓ Interior vacuum cleaning</li>
+                                            <li>✓ Dashboard polish</li>
+                                            <li>✓ Seat cleaning</li>
+                                        </ul>
+                                        <p class="text-xs text-gray-500">⏱️ Duration: 45-60 minutes</p>
+                                    </div>
+
+                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="premium" data-price="599">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h3 class="font-semibold">Premium Detailing</h3>
+                                            <span class="text-2xl font-bold text-blue-600">₹599</span>
+                                        </div>
+                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                                            <li>✓ Everything in Full Service</li>
+                                            <li>✓ Wax protection</li>
+                                            <li>✓ Engine bay cleaning</li>
+                                            <li>✓ Air freshener</li>
+                                        </ul>
+                                        <p class="text-xs text-gray-500">⏱️ Duration: 60-90 minutes</p>
+                                    </div>
+
+                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="monthly" data-price="1299">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h3 class="font-semibold">Monthly Package</h3>
+                                            <span class="text-2xl font-bold text-blue-600">₹1299</span>
+                                        </div>
+                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                                            <li>✓ 4 Full Services per month</li>
+                                            <li>✓ Priority booking</li>
+                                            <li>✓ Free emergency wash</li>
+                                            <li>✓ Best value package</li>
+                                        </ul>
+                                        <p class="text-xs text-gray-500">💰 Save ₹297 per month!</p>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="serviceError"></div>
+                            </div>
+
+                            <!-- Date & Time Selection -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="serviceDate" class="block text-sm font-medium text-gray-700 mb-2">Preferred Date *</label>
+                                    <input type="date" id="serviceDate" class="form-input" min="" required>
+                                    <div class="error-message" id="dateError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="serviceTime" class="block text-sm font-medium text-gray-700 mb-2">Preferred Time *</label>
+                                    <select id="serviceTime" class="form-input" required>
+                                        <option value="">Select Time Slot</option>
+                                        <option value="7am-9am">7:00 AM - 9:00 AM</option>
+                                        <option value="9am-11am">9:00 AM - 11:00 AM</option>
+                                        <option value="11am-1pm">11:00 AM - 1:00 PM</option>
+                                        <option value="2pm-4pm">2:00 PM - 4:00 PM</option>
+                                        <option value="4pm-6pm">4:00 PM - 6:00 PM</option>
+                                        <option value="6pm-8pm">6:00 PM - 8:00 PM (Mon-Sat only)</option>
+                                    </select>
+                                    <div class="error-message" id="timeError"></div>
+                                </div>
+                            </div>
+
+                            <!-- Customer Information -->
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Your Information</h3>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                    <input type="text" id="customerName" class="form-input" placeholder="Enter your full name" required>
+                                    <div class="error-message" id="nameError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                    <input type="tel" id="customerPhone" class="form-input" placeholder="+91 8805173650" required>
+                                    <div class="error-message" id="phoneError"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="customerEmail" class="form-input" placeholder="your@email.com (for booking confirmation)">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="serviceAddress" class="block text-sm font-medium text-gray-700 mb-2">Service Address *</label>
+                                <textarea id="serviceAddress" class="form-input" rows="3" placeholder="Enter complete address with landmark" required></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Please provide complete address with landmark for easy location</p>
+                                <div class="error-message" id="addressError"></div>
+                            </div>
+
+                            <!-- Car Details -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="carBrand" class="block text-sm font-medium text-gray-700 mb-2">Car Brand</label>
+                                    <select id="carBrand" class="form-input">
+                                        <option value="">Select Brand</option>
+                                        <option value="Maruti Suzuki">Maruti Suzuki</option>
+                                        <option value="Hyundai">Hyundai</option>
+                                        <option value="Honda">Honda</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Tata">Tata</option>
+                                        <option value="Mahindra">Mahindra</option>
+                                        <option value="Kia">Kia</option>
+                                        <option value="Ford">Ford</option>
+                                        <option value="Volkswagen">Volkswagen</option>
+                                        <option value="Skoda">Skoda</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="carType" class="block text-sm font-medium text-gray-700 mb-2">Car Type</label>
+                                    <select id="carType" class="form-input">
+                                        <option value="">Select Type</option>
+                                        <option value="Hatchback">Hatchback</option>
+                                        <option value="Sedan">Sedan</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="MUV">MUV</option>
+                                        <option value="Luxury">Luxury Car</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Special Instructions -->
+                            <div class="form-group">
+                                <label for="specialInstructions" class="block text-sm font-medium text-gray-700 mb-2">Special Instructions (Optional)</label>
+                                <textarea id="specialInstructions" class="form-input" rows="2" placeholder="Any specific requirements or instructions for our team"></textarea>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Payment Method</label>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                        <input type="radio" name="paymentMethod" value="cash" class="mr-3" checked>
+                                        <span>💵 Cash on Service</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                        <input type="radio" name="paymentMethod" value="upi" class="mr-3">
+                                        <span>📱 UPI Payment</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                        <input type="radio" name="paymentMethod" value="card" class="mr-3">
+                                        <span>💳 Card Payment</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-6 border-t">
+                                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                    Confirm Booking
+                                </button>
+                                <p class="text-xs text-gray-500 text-center mt-2">
+                                    By booking, you agree to our Terms of Service and Privacy Policy
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Booking Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Booking Summary</h3>
+
+                        <div id="bookingSummary" class="space-y-4">
+                            <div class="text-center py-8 text-gray-500">
+                                <i data-feather="clipboard" class="w-12 h-12 mx-auto mb-4 text-gray-400"></i>
+                                <p>Select a service to see booking summary</p>
+                            </div>
+                        </div>
+
+                        <div id="costBreakdown" class="hidden border-t pt-4 mt-6">
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span>Service Cost:</span>
+                                    <span id="serviceCost">₹0</span>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>Travel Charges:</span>
+                                    <span>FREE</span>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>Equipment:</span>
+                                    <span>FREE</span>
+                                </div>
+                                <div class="border-t pt-2 mt-2">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span>Total:</span>
+                                        <span id="totalCost">₹0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-3 bg-green-50 rounded-lg text-sm">
+                                <p class="text-green-800 font-semibold">Payment collected at service</p>
+                                <p class="text-green-600 text-xs">No advance payment required</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Contact -->
+                    <div class="mt-6 bg-blue-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Need Help?</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><strong>📞 Call:</strong> +91 8805173650</p>
+                            <p><strong>💬 WhatsApp:</strong> +91 8805173650</p>
+                            <p><strong>📧 Email:</strong> washxcare@gmail.com</p>
+                        </div>
+                        <a href="https://wa.me/918805173650?text=Hi! I need help with booking" target="_blank" class="mt-3 block w-full bg-green-500 text-white text-center py-2 rounded-lg hover:bg-green-600 transition-colors">
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Booking Alternative -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Prefer WhatsApp Booking?</h2>
+            <p class="text-gray-600 mb-6">Send us a quick message with your preferred service, date, and time for instant booking.</p>
+            <a href="https://wa.me/918805173650?text=Hi! I want to book a car wash service. Please help me with the details." target="_blank" class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                <i data-feather="message-circle" class="w-5 h-5 mr-2"></i>
+                Book via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WashX</h3>
+                    <p class="text-gray-300 text-sm">Professional doorstep car wash service</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="offers.html">Offers</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Contact</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>📞 +91 8805173650</li>
+                        <li>📧 washxcare@gmail.com</li>
+                        <li>📍 Nashik | Pune | Mumbai</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-feather="check-circle" class="w-8 h-8 text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Booking Confirmed!</h3>
+            <p class="text-gray-600 mb-6">Your car wash has been scheduled successfully. We'll contact you shortly to confirm the details.</p>
+            <div class="space-y-2 text-sm text-left bg-gray-50 p-4 rounded-lg mb-6">
+                <div id="bookingDetails"></div>
+            </div>
+            <button onclick="closeSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS and Feather Icons
+        AOS.init({ duration: 800, once: true });
+        feather.replace();
+
+        // Set minimum date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('serviceDate').min = tomorrow.toISOString().split('T')[0];
+
+        // Service selection handling
+        let selectedService = null;
+        let selectedPrice = 0;
+
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                this.classList.add('selected');
+
+                selectedService = this.dataset.service;
+                selectedPrice = parseInt(this.dataset.price);
+
+                updateBookingSummary();
+                clearError('serviceError');
+            });
+        });
+
+        // Update booking summary
+        function updateBookingSummary() {
+            const summaryDiv = document.getElementById('bookingSummary');
+            const costBreakdown = document.getElementById('costBreakdown');
+
+            if (!selectedService) return;
+
+            const serviceNames = {
+                'basic': 'Basic Exterior Wash',
+                'full': 'Full Interior + Exterior',
+                'premium': 'Premium Detailing',
+                'monthly': 'Monthly Package'
+            };
+
+            const serviceDurations = {
+                'basic': '30-40 minutes',
+                'full': '45-60 minutes',
+                'premium': '60-90 minutes',
+                'monthly': '4 services per month'
+            };
+
+            summaryDiv.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold">${serviceNames[selectedService]}</h4>
+                            <p class="text-sm text-gray-500">Duration: ${serviceDurations[selectedService]}</p>
+                        </div>
+                        <span class="font-bold text-blue-600">₹${selectedPrice}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('serviceCost').textContent = `₹${selectedPrice}`;
+            document.getElementById('totalCost').textContent = `₹${selectedPrice}`;
+            costBreakdown.classList.remove('hidden');
+        }
+
+        // Form validation functions
+        function validateField(fieldId, validator, errorId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value.trim();
+            const isValid = validator(value);
+
+            if (isValid) {
+                field.classList.remove('error');
+                field.classList.add('success');
+                clearError(errorId);
+                return true;
+            } else {
+                field.classList.remove('success');
+                field.classList.add('error');
+                return false;
+            }
+        }
+
+        function showError(errorId, message) {
+            document.getElementById(errorId).textContent = message;
+        }
+
+        function clearError(errorId) {
+            document.getElementById(errorId).textContent = '';
+        }
+
+        // Validators
+        const validators = {
+            name: (value) => value.length >= 2,
+            phone: (value) => /^[+]?[0-9]{10,15}$/.test(value.replace(/\s/g, '')),
+            email: (value) => !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            address: (value) => value.length >= 10,
+            date: (value) => {
+                const selected = new Date(value);
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                return selected >= tomorrow;
+            },
+            time: (value) => value !== ''
+        };
+
+        // Real-time validation
+        document.getElementById('customerName').addEventListener('input', function() {
+            if (this.value.trim()) {
+                if (!validateField('customerName', validators.name, 'nameError')) {
+                    showError('nameError', 'Name must be at least 2 characters long');
+                }
+            }
+        });
+
+        document.getElementById('customerPhone').addEventListener('input', function() {
+            if (this.value.trim()) {
+                if (!validateField('customerPhone', validators.phone, 'phoneError')) {
+                    showError('phoneError', 'Please enter a valid phone number');
+                }
+            }
+        });
+
+        document.getElementById('customerEmail').addEventListener('input', function() {
+            if (this.value.trim()) {
+                if (!validateField('customerEmail', validators.email, 'emailError')) {
+                    showError('emailError', 'Please enter a valid email address');
+                }
+            }
+        });
+
+        document.getElementById('serviceAddress').addEventListener('input', function() {
+            if (this.value.trim()) {
+                if (!validateField('serviceAddress', validators.address, 'addressError')) {
+                    showError('addressError', 'Please provide a complete address with landmark');
+                }
+            }
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate all fields
+            let isValid = true;
+
+            // Check service selection
+            if (!selectedService) {
+                showError('serviceError', 'Please select a service');
+                isValid = false;
+            }
+
+            // Validate required fields
+            if (!validateField('customerName', validators.name, 'nameError')) {
+                showError('nameError', 'Name is required (min 2 characters)');
+                isValid = false;
+            }
+
+            if (!validateField('customerPhone', validators.phone, 'phoneError')) {
+                showError('phoneError', 'Valid phone number is required');
+                isValid = false;
+            }
+
+            if (!validateField('serviceAddress', validators.address, 'addressError')) {
+                showError('addressError', 'Complete address is required');
+                isValid = false;
+            }
+
+            if (!validateField('serviceDate', validators.date, 'dateError')) {
+                showError('dateError', 'Please select a future date');
+                isValid = false;
+            }
+
+            if (!validateField('serviceTime', validators.time, 'timeError')) {
+                showError('timeError', 'Please select a time slot');
+                isValid = false;
+            }
+
+            // Validate optional email if provided
+            const email = document.getElementById('customerEmail').value;
+            if (email && !validateField('customerEmail', validators.email, 'emailError')) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                // Scroll to first error
+                const firstError = document.querySelector('.error-message:not(:empty)');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = 'Processing...';
+            submitBtn.disabled = true;
+
+            // Simulate booking process
+            setTimeout(() => {
+                showSuccessModal();
+                submitBtn.innerHTML = 'Confirm Booking';
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Success modal functions
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            const detailsDiv = document.getElementById('bookingDetails');
+
+            const serviceNames = {
+                'basic': 'Basic Exterior Wash',
+                'full': 'Full Interior + Exterior',
+                'premium': 'Premium Detailing',
+                'monthly': 'Monthly Package'
+            };
+
+            detailsDiv.innerHTML = `
+                <p><strong>Service:</strong> ${serviceNames[selectedService]}</p>
+                <p><strong>Date:</strong> ${document.getElementById('serviceDate').value}</p>
+                <p><strong>Time:</strong> ${document.getElementById('serviceTime').value}</p>
+                <p><strong>Total:</strong> ₹${selectedPrice}</p>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            // Reset form
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById('bookingSummary').innerHTML = `
+                <div class="text-center py-8 text-gray-500">
+                    <i data-feather="clipboard" class="w-12 h-12 mx-auto mb-4 text-gray-400"></i>
+                    <p>Select a service to see booking summary</p>
+                </div>
+            `;
+            document.getElementById('costBreakdown').classList.add('hidden');
+            selectedService = null;
+            selectedPrice = 0;
+            feather.replace();
+        }
+    </script>
+</body>
+</html>

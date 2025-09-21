@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews & Testimonials | WashX - Real Customer Experiences</title>
+    <meta name="description" content="Read genuine reviews from 1000+ satisfied WashX customers. See why we have 4.8/5 rating for professional doorstep car wash services across Nashik, Pune, Mumbai.">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Customer Reviews & Testimonials | WashX">
+    <meta property="og:description" content="Read genuine reviews from 1000+ satisfied customers. 4.8/5 rating for professional doorstep car wash services.">
+    <meta property="og:image" content="/static/testimonials-page.jpg">
+    <meta property="og:url" content="https://washx.com/testimonials">
+    <meta property="og:type" content="website">
+    
+    <!-- Structured Data for Reviews -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "WashX",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1000",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Rahul Sharma"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "reviewBody": "WashX has completely changed my car maintenance routine. The convenience of doorstep service is unmatched, and the quality is consistently excellent."
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <style>
+        .testimonial-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+        }
+        .rating-stars {
+            color: #F59E0B;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%);
+        }
+        .verified-badge {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .review-highlight {
+            background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+            border-left: 4px solid #3B82F6;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .customer-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #93C5FD;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #E5E7EB;
+            background: white;
+            color: #6B7280;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active {
+            background: #3B82F6;
+            color: white;
+            border-color: #3B82F6;
+        }
+        .review-form {
+            background: linear-gradient(135deg, #F9FAFB, #F3F4F6);
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Emergency Banner -->
+    <div class="bg-red-600 text-white text-center py-2 text-sm">
+        🚨 <strong>Emergency Car Wash:</strong> Call +91 8805173650 (Available 24/7) 🚨
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600">WashX</h1>
+                        <p class="text-xs text-gray-500">Xtra Clean. Xtra Fast.</p>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-btn text-gray-700 p-2">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="offers.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Offers</a>
+                    <a href="testimonials.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-blue-600">Reviews</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Book Now</a>
+                    <a href="tel:+919876543210" class="text-blue-600 hover:text-blue-800 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden md:hidden bg-white border-t">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 text-gray-700">Home</a>
+                    <a href="services.html" class="block px-3 py-2 text-gray-700">Services</a>
+                    <a href="offers.html" class="block px-3 py-2 text-gray-700">Offers</a>
+                    <a href="testimonials.html" class="block px-3 py-2 text-blue-600 font-medium">Reviews</a>
+                    <a href="about.html" class="block px-3 py-2 text-gray-700">About</a>
+                    <a href="booking.html" class="block px-3 py-2 bg-blue-600 text-white rounded-md mx-3">Book Now</a>
+                    <a href="tel:+919876543210" class="block px-3 py-2 text-blue-600 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-green-200 font-semibold mb-4 text-lg" data-aos="fade-up">
+                    ⭐ Customer Reviews & Testimonials
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
+                    Hear What Our<br>Customers Say
+                </h1>
+                <p class="text-xl mb-8 text-green-100 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                    Real stories from satisfied customers across Nashik, Pune, and Mumbai. See why thousands trust WashX for their car care needs.
+                </p>
+                
+                <!-- Overall Rating Display -->
+                <div class="bg-white bg-opacity-20 rounded-2xl p-8 max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-5xl font-bold mb-2">4.8</div>
+                            <div class="flex justify-center mb-2">
+                                <i data-feather="star" class="w-6 h-6 fill-current text-yellow-300"></i>
+                                <i data-feather="star" class="w-6 h-6 fill-current text-yellow-300"></i>
+                                <i data-feather="star" class="w-6 h-6 fill-current text-yellow-300"></i>
+                                <i data-feather="star" class="w-6 h-6 fill-current text-yellow-300"></i>
+                                <i data-feather="star" class="w-6 h-6 fill-current text-yellow-300"></i>
+                            </div>
+                            <div class="text-green-100">Average Rating</div>
+                        </div>
+                        <div class="text-4xl text-green-200">|</div>
+                        <div class="text-center">
+                            <div class="text-5xl font-bold mb-2">1000+</div>
+                            <div class="text-green-100">Happy Customers</div>
+                        </div>
+                        <div class="text-4xl text-green-200">|</div>
+                        <div class="text-center">
+                            <div class="text-5xl font-bold mb-2">95%</div>
+                            <div class="text-green-100">Return Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Filter -->
+    <section class="py-8 bg-white border-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Filter Reviews by Service</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="filter-btn active" data-filter="all">All Reviews</button>
+                    <button class="filter-btn" data-filter="basic">Basic Wash</button>
+                    <button class="filter-btn" data-filter="full">Full Service</button>
+                    <button class="filter-btn" data-filter="premium">Premium Detailing</button>
+                    <button class="filter-btn" data-filter="monthly">Monthly Package</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Statistics -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="stats-card" data-aos="fade-up">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">1000+</div>
+                    <div class="text-gray-700">Satisfied Customers</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">5000+</div>
+                    <div class="text-gray-700">Cars Washed</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">95%</div>
+                    <div class="text-gray-700">Customer Retention</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">4.8/5</div>
+                    <div class="text-gray-700">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">What Our Customers Are Saying</h2>
+                <p class="text-gray-600 text-lg" data-aos="fade-up" data-aos-delay="200">Genuine reviews from real customers who experienced our services</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
+                <!-- Review 1 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="full" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4">RS</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Rahul Sharma</h3>
+                            <p class="text-gray-600 text-sm">Software Engineer, Nashik</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "WashX has completely changed my car maintenance routine. The convenience of doorstep service is unmatched, and the quality is consistently excellent. My car looks brand new after every wash!"
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Full Interior + Exterior</p>
+                        <p class="text-sm text-blue-800"><strong>Frequency:</strong> Bi-weekly for 6 months</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>2 days ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Powai, Nashik</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="premium" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4" style="background: linear-gradient(135deg, #EF4444, #DC2626);">PP</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Priya Patel</h3>
+                            <p class="text-gray-600 text-sm">Doctor, Pune</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "I've tried many car wash services, but WashX stands out for their attention to detail. The premium detailing service made my 3-year-old car look absolutely stunning. Highly professional team!"
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Premium Detailing</p>
+                        <p class="text-sm text-blue-800"><strong>Car Type:</strong> Hyundai i20</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>5 days ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Koregaon Park, Pune</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="monthly" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4" style="background: linear-gradient(135deg, #10B981, #059669);">AD</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Amit Desai</h3>
+                            <p class="text-gray-600 text-sm">Business Owner, Mumbai</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "The monthly package is a game-changer! My car stays clean all month without me having to think about it. The team is punctual, professional, and the pricing is very reasonable."
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Monthly Package</p>
+                        <p class="text-sm text-blue-800"><strong>Duration:</strong> 8 months subscriber</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>1 week ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Whitefield, Mumbai</span>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="full" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">NG</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Neha Gupta</h3>
+                            <p class="text-gray-600 text-sm">Marketing Manager, Nashik</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "As a working professional, I don't have time for car washes. WashX comes to my office parking lot and handles everything while I work. Perfect service that fits my busy schedule!"
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Full Interior + Exterior</p>
+                        <p class="text-sm text-blue-800"><strong>Location:</strong> Office parking</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>3 days ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Andheri, Nashik</span>
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="basic" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4" style="background: linear-gradient(135deg, #F59E0B, #D97706);">SK</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Suresh Kumar</h3>
+                            <p class="text-gray-600 text-sm">Teacher, Pune</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "Excellent value for money! The basic wash is perfect for my weekly needs. The team is always on time and very courteous. I've recommended WashX to all my neighbors."
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Basic Exterior Wash</p>
+                        <p class="text-sm text-blue-800"><strong>Frequency:</strong> Weekly</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>4 days ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Wakad, Pune</span>
+                    </div>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="testimonial-card rounded-xl shadow-lg p-6 review-item" data-category="premium" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <div class="customer-photo mr-4" style="background: linear-gradient(135deg, #EC4899, #DB2777);">MT</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Meera Tiwari</h3>
+                            <p class="text-gray-600 text-sm">Architect, Mumbai</p>
+                            <div class="verified-badge mt-1">
+                                <i data-feather="check-circle" class="w-3 h-3"></i>
+                                Verified Customer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex rating-stars mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-4 italic">
+                        "The loyalty program is fantastic! After 7 washes, getting the 8th one free is such a great reward. The quality never disappoints, and customer service is top-notch."
+                    </blockquote>
+                    
+                    <div class="review-highlight">
+                        <p class="text-sm text-blue-800"><strong>Service Used:</strong> Premium Detailing</p>
+                        <p class="text-sm text-blue-800"><strong>Loyalty Status:</strong> 2 free washes earned</p>
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-500 mt-4">
+                        <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                        <span>1 week ago</span>
+                        <span class="mx-2">•</span>
+                        <span>Koramangala, Nashik</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center">
+                <button id="loadMoreReviews" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    Load More Reviews
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Video Testimonials</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">Watch real customers share their WashX experience</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up">
+                    <div class="relative">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-feather="play-circle" class="w-16 h-16 text-blue-600 mx-auto mb-2"></i>
+                                <p class="text-gray-600">Customer Review Video</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-900 mb-2">Rajesh M. - IT Professional</h4>
+                        <p class="text-gray-600 text-sm">"Why I chose WashX monthly package"</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-feather="play-circle" class="w-16 h-16 text-blue-600 mx-auto mb-2"></i>
+                                <p class="text-gray-600">Before & After Video</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-900 mb-2">Car Transformation</h4>
+                        <p class="text-gray-600 text-sm">See the amazing results of our premium service</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-feather="play-circle" class="w-16 h-16 text-blue-600 mx-auto mb-2"></i>
+                                <p class="text-gray-600">Service Process</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-900 mb-2">Behind the Scenes</h4>
+                        <p class="text-gray-600 text-sm">Watch our professional team in action</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Write Review Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Share Your Experience</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">Help others make the right choice - write a review about your WashX experience</p>
+            </div>
+            
+            <div class="review-form" data-aos="fade-up" data-aos-delay="400">
+                <form id="reviewForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="reviewerName" class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
+                            <input type="text" id="reviewerName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your full name" required>
+                        </div>
+                        <div>
+                            <label for="reviewerEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="reviewerEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="serviceUsed" class="block text-sm font-medium text-gray-700 mb-2">Service Used *</label>
+                            <select id="serviceUsed" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <option value="">Select Service</option>
+                                <option value="basic">Basic Exterior Wash</option>
+                                <option value="full">Full Interior + Exterior</option>
+                                <option value="premium">Premium Detailing</option>
+                                <option value="monthly">Monthly Package</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="serviceLocation" class="block text-sm font-medium text-gray-700 mb-2">Service Location</label>
+                            <select id="serviceLocation" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Select City</option>
+                                <option value="mumbai">Nashik</option>
+                                <option value="pune">Pune</option>
+                                <option value="Mumbai">Mumbai</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Overall Rating *</label>
+                        <div class="flex items-center space-x-2">
+                            <div class="rating-input flex space-x-1" data-rating="0">
+                                <button type="button" class="star-btn w-8 h-8 text-gray-300 hover:text-yellow-400" data-value="1">
+                                    <i data-feather="star" class="w-full h-full"></i>
+                                </button>
+                                <button type="button" class="star-btn w-8 h-8 text-gray-300 hover:text-yellow-400" data-value="2">
+                                    <i data-feather="star" class="w-full h-full"></i>
+                                </button>
+                                <button type="button" class="star-btn w-8 h-8 text-gray-300 hover:text-yellow-400" data-value="3">
+                                    <i data-feather="star" class="w-full h-full"></i>
+                                </button>
+                                <button type="button" class="star-btn w-8 h-8 text-gray-300 hover:text-yellow-400" data-value="4">
+                                    <i data-feather="star" class="w-full h-full"></i>
+                                </button>
+                                <button type="button" class="star-btn w-8 h-8 text-gray-300 hover:text-yellow-400" data-value="5">
+                                    <i data-feather="star" class="w-full h-full"></i>
+                                </button>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-4">Click to rate</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="reviewText" class="block text-sm font-medium text-gray-700 mb-2">Your Review *</label>
+                        <textarea id="reviewText" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Share your experience with WashX. What did you like? How was the service quality? Would you recommend us?" required></textarea>
+                        <p class="text-xs text-gray-500 mt-1">Minimum 50 characters</p>
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3" required>
+                            <span class="text-sm text-gray-600">I confirm that this review is based on my own experience and is truthful. I allow WashX to use this review for marketing purposes.</span>
+                        </label>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Submit Review
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Join Our Happy Customers</h2>
+            <p class="text-xl mb-8" data-aos="fade-up" data-aos-delay="200">Experience the same quality service that earned us 1000+ positive reviews</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="booking.html" class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Book Your First Wash
+                </a>
+                <a href="tel:+918805173650" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+                    📞 Call +91 8805173650
+                </a>
+            </div>
+            <div class="mt-6 text-green-100">
+                <p class="text-sm">⭐ 4.8/5 average rating | 💯 100% satisfaction guarantee | 🚀 Same day service available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WashX</h3>
+                    <p class="text-gray-300 mb-4">Xtra Clean. Xtra Fast.</p>
+                    <p class="text-gray-300 text-sm">Trusted by 1000+ customers for professional doorstep car wash services.</p>
+                    <div class="mt-4">
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i data-feather="star" class="w-4 h-4 fill-current mr-1"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current mr-1"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current mr-1"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current mr-1"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current mr-1"></i>
+                            <span class="text-white ml-2 font-semibold">4.8/5</span>
+                        </div>
+                        <p class="text-gray-300 text-sm">Based on 1000+ reviews</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Reviews</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>1000+ Satisfied Customers</li>
+                        <li>4.8/5 Average Rating</li>
+                        <li>95% Return Rate</li>
+                        <li>5000+ Cars Washed</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="hover:text-white">Services</a></li>
+                        <li><a href="offers.html" class="hover:text-white">Offers</a></li>
+                        <li><a href="testimonials.html" class="hover:text-white">Reviews</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>📞 +91 8805173650</li>
+                        <li>📧 washxcare@gmail.com</li>
+                        <li>📍 Nashik | Pune | Mumbai</li>
+                        <li>💬 WhatsApp for reviews</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 WashX. All rights reserved. | Customer reviews are verified</p>
+                <p class="mt-2 text-sm">🏆 Trusted by thousands | 📝 Write your review today</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918805173650?text=Hi! I want to share my feedback about WashX service" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 animate-pulse">
+        <i data-feather="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Success Modal -->
+    <div id="reviewSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-feather="check-circle" class="w-8 h-8 text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+            <p class="text-gray-600 mb-6">Your review has been submitted successfully. It will be published after verification.</p>
+            <button onclick="closeReviewModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS and Feather Icons
+        AOS.init({ duration: 800, once: true });
+        feather.replace();
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+
+        // Review Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const reviewItems = document.querySelectorAll('.review-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter reviews
+                reviewItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Star Rating Functionality
+        const ratingInput = document.querySelector('.rating-input');
+        const starBtns = document.querySelectorAll('.star-btn');
+        let currentRating = 0;
+
+        starBtns.forEach((btn, index) => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentRating = parseInt(this.getAttribute('data-value'));
+                ratingInput.setAttribute('data-rating', currentRating);
+                updateStarDisplay();
+            });
+            
+            btn.addEventListener('mouseenter', function() {
+                const hoverValue = parseInt(this.getAttribute('data-value'));
+                highlightStars(hoverValue);
+            });
+        });
+
+        ratingInput.addEventListener('mouseleave', function() {
+            updateStarDisplay();
+        });
+
+        function highlightStars(rating) {
+            starBtns.forEach((btn, index) => {
+                if (index < rating) {
+                    btn.classList.remove('text-gray-300');
+                    btn.classList.add('text-yellow-400');
+                } else {
+                    btn.classList.remove('text-yellow-400');
+                    btn.classList.add('text-gray-300');
+                }
+            });
+        }
+
+        function updateStarDisplay() {
+            highlightStars(currentRating);
+        }
+
+        // Review Form Submission
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('reviewerName').value;
+            const email = document.getElementById('reviewerEmail').value;
+            const service = document.getElementById('serviceUsed').value;
+            const reviewText = document.getElementById('reviewText').value;
+            
+            if (!name || !email || !service || !reviewText || currentRating === 0) {
+                alert('Please fill in all required fields and provide a rating.');
+                return;
+            }
+            
+            if (reviewText.length < 50) {
+                alert('Please write at least 50 characters in your review.');
+                return;
+            }
+            
+            // Show success modal
+            document.getElementById('reviewSuccessModal').classList.remove('hidden');
+            
+            // Reset form
+            this.reset();
+            currentRating = 0;
+            updateStarDisplay();
+        });
+
+        function closeReviewModal() {
+            document.getElementById('reviewSuccessModal').classList.add('hidden');
+        }
+
+        // Load More Reviews Functionality
+        document.getElementById('loadMoreReviews').addEventListener('click', function() {
+            this.innerHTML = 'Loading...';
+            this.disabled = true;
+            
+            // Simulate loading more reviews
+            setTimeout(() => {
+                this.innerHTML = 'Load More Reviews';
+                this.disabled = false;
+                // In a real application, you would load more reviews here
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

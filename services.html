@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | WashX - Professional Car Wash Packages & Pricing</title>
+    <meta name="description" content="Choose from our professional car wash services: Basic Exterior (₹199), Full Interior+Exterior (₹299), Premium Detailing (₹599). Doorstep service with eco-friendly products.">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Car Wash Services & Packages | WashX">
+    <meta property="og:description" content="Professional doorstep car wash services starting at ₹199. Choose from Basic, Full Service, or Premium Detailing packages.">
+    <meta property="og:image" content="/static/services-page.jpg">
+    <meta property="og:url" content="https://washx.com/services">
+    <meta property="og:type" content="website">
+    
+    <!-- Structured Data for Services -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "WashX Car Wash Services",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "WashX"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Basic Exterior Wash",
+          "price": "199",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer", 
+          "name": "Full Interior + Exterior",
+          "price": "299",
+          "priceCurrency": "INR"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Detailing", 
+          "price": "599",
+          "priceCurrency": "INR"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Favicon with Fallback -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <style>
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #1D4ED8 100%);
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border-left: 4px solid #3B82F6;
+        }
+        .price-highlight {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-radius: 12px;
+            padding: 8px 16px;
+            display: inline-block;
+            font-weight: bold;
+            color: #92400E;
+        }
+        .service-duration {
+            background: #EFF6FF;
+            color: #1D4ED8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            .hero-text { font-size: 2rem; }
+            .mobile-scroll {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+        
+        /* Compare table styling */
+        .compare-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .compare-table th {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+        }
+        .compare-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        .check-mark {
+            color: #10B981;
+            font-weight: bold;
+        }
+        .cross-mark {
+            color: #EF4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Emergency Banner -->
+    <div class="bg-red-600 text-white text-center py-2 text-sm">
+        🚨 <strong>Emergency Car Wash:</strong> Call +91 8805173650 (Available 24/7) 🚨
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600">WashX</h1>
+                        <p class="text-xs text-gray-500">Xtra Clean. Xtra Fast.</p>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-btn text-gray-700 p-2">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="services.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-blue-600">Services</a>
+                    <a href="offers.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Offers</a>
+                    <a href="testimonials.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Reviews</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Book Now</a>
+                    <a href="tel:+919876543210" class="text-blue-600 hover:text-blue-800 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden md:hidden bg-white border-t">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 text-gray-700">Home</a>
+                    <a href="services.html" class="block px-3 py-2 text-blue-600 font-medium">Services</a>
+                    <a href="offers.html" class="block px-3 py-2 text-gray-700">Offers</a>
+                    <a href="testimonials.html" class="block px-3 py-2 text-gray-700">Reviews</a>
+                    <a href="about.html" class="block px-3 py-2 text-gray-700">About</a>
+                    <a href="booking.html" class="block px-3 py-2 bg-blue-600 text-white rounded-md mx-3">Book Now</a>
+                    <a href="tel:+919876543210" class="block px-3 py-2 text-blue-600 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-yellow-300 font-semibold mb-4 text-lg" data-aos="fade-up">
+                    🌟 Premium Car Care Services
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 hero-text" data-aos="fade-up" data-aos-delay="200">
+                    Our Services
+                </h1>
+                <p class="text-xl mb-8 text-blue-100 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                    Professional car care packages tailored to your needs. From basic exterior wash to premium detailing - we bring the best to your doorstep.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 text-sm" data-aos="fade-up" data-aos-delay="600">
+                    <span class="flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                        <i data-feather="check-circle" class="w-4 h-4 mr-2"></i>
+                        Eco-friendly products
+                    </span>
+                    <span class="flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                        <i data-feather="clock" class="w-4 h-4 mr-2"></i>
+                        45-90 minutes service
+                    </span>
+                    <span class="flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                        <i data-feather="shield-check" class="w-4 h-4 mr-2"></i>
+                        100% satisfaction guarantee
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Packages -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Choose Your Perfect Package</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                    Professional car wash services designed to meet every need and budget. All packages include doorstep service with professional equipment.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Basic Package -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 border border-gray-100 relative" data-aos="fade-up">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="droplets" class="w-10 h-10 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic Exterior</h3>
+                        <div class="price-highlight mb-4">₹199</div>
+                        <div class="service-duration mb-4">30-40 minutes</div>
+                    </div>
+                    
+                    <div class="feature-highlight p-4 rounded-lg mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">✨ What's Included:</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Premium exterior foam wash</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> All glass cleaning (interior & exterior)</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Tyre cleaning & shine treatment</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Body drying with microfiber towels</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Mirror & handle cleaning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <h5 class="font-semibold text-gray-900 mb-2">🎯 Perfect For:</h5>
+                        <p class="text-gray-600 text-sm">Weekly maintenance, dust removal, quick refresh before important meetings or events.</p>
+                    </div>
+                    
+                    <a href="booking.html" class="block w-full bg-blue-600 text-white py-3 rounded-lg text-center font-semibold hover:bg-blue-700 transition-colors">
+                        Book Basic Package
+                    </a>
+                </div>
+
+                <!-- Full Package - POPULAR -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 border-2 border-blue-200 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="popular-badge">🔥 MOST POPULAR</div>
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="car" class="w-10 h-10 text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Full Interior + Exterior</h3>
+                        <div class="price-highlight mb-4">₹299</div>
+                        <div class="service-duration mb-4">45-60 minutes</div>
+                    </div>
+                    
+                    <div class="feature-highlight p-4 rounded-lg mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">✨ Everything in Basic PLUS:</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Complete interior vacuum cleaning</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Premium dashboard & interior polish</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Seat cleaning & protection</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Floor mat washing & drying</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Door panel & storage cleaning</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Air vent dusting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg mb-6 border-l-4 border-green-500">
+                        <h5 class="font-semibold text-green-800 mb-2">🎯 Perfect For:</h5>
+                        <p class="text-green-700 text-sm">Monthly deep cleaning, family cars, complete refresh, before festivals or special occasions.</p>
+                        <p class="text-green-600 text-xs mt-2 font-semibold">💡 Best Value for Money!</p>
+                    </div>
+                    
+                    <a href="booking.html" class="block w-full bg-green-600 text-white py-3 rounded-lg text-center font-semibold hover:bg-green-700 transition-colors">
+                        Book Full Package
+                    </a>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 border border-gray-100 relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-feather="award" class="w-10 h-10 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium Detailing</h3>
+                        <div class="price-highlight mb-4">₹599</div>
+                        <div class="service-duration mb-4">60-90 minutes</div>
+                    </div>
+                    
+                    <div class="feature-highlight p-4 rounded-lg mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">✨ Everything in Full PLUS:</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Premium wax protection coating</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Engine bay cleaning & degreasing</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Premium air freshener application</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Leather/fabric protection treatment</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Chrome & metal polishing</li>
+                            <li class="flex items-center"><span class="check-mark mr-2">✓</span> Paint protection & UV shield</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg mb-6 border-l-4 border-purple-500">
+                        <h5 class="font-semibold text-purple-800 mb-2">🎯 Perfect For:</h5>
+                        <p class="text-purple-700 text-sm">Luxury cars, special events, maximum protection, monsoon prep, resale preparation.</p>
+                        <p class="text-purple-600 text-xs mt-2 font-semibold">👑 Ultimate Care & Protection!</p>
+                    </div>
+                    
+                    <a href="booking.html" class="block w-full bg-purple-600 text-white py-3 rounded-lg text-center font-semibold hover:bg-purple-700 transition-colors">
+                        Book Premium Package
+                    </a>
+                </div>
+            </div>
+
+            <!-- Monthly Package Special -->
+            <div class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 rounded-2xl p-8 text-white relative overflow-hidden" data-aos="zoom-in">
+                <div class="absolute top-4 right-4 bg-white text-orange-600 px-4 py-2 rounded-full font-bold text-sm">
+                    SAVE ₹297/MONTH
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">Monthly Care Package</h3>
+                        <div class="text-6xl font-bold mb-4">₹1299</div>
+                        <p class="text-orange-100 mb-6">4 Full Interior + Exterior services per month (Worth ₹1596)</p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center">
+                                <i data-feather="calendar" class="w-5 h-5 mr-3"></i>
+                                <span>Weekly professional cleaning</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="zap" class="w-5 h-5 mr-3"></i>
+                                <span>Priority booking & scheduling</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="gift" class="w-5 h-5 mr-3"></i>
+                                <span>1 FREE emergency wash per month</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="phone" class="w-5 h-5 mr-3"></i>
+                                <span>Dedicated customer support</span>
+                            </div>
+                        </div>
+                        
+                        <a href="booking.html" class="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-bold hover:bg-orange-50 transition-colors">
+                            Subscribe Now
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🏆</div>
+                        <h4 class="text-2xl font-bold mb-2">Best Value Package</h4>
+                        <p class="text-orange-100">Perfect for families who want their car always clean and well-maintained.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Comparison Table -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Compare All Services</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">See exactly what's included in each package</p>
+            </div>
+            
+            <div class="compare-table overflow-x-auto" data-aos="zoom-in">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Service Features</th>
+                            <th class="text-center">Basic<br><span class="text-sm font-normal">₹199</span></th>
+                            <th class="text-center">Full Service<br><span class="text-sm font-normal">₹299</span></th>
+                            <th class="text-center">Premium<br><span class="text-sm font-normal">₹599</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="font-medium">Exterior Foam Wash</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="font-medium">Glass Cleaning (All Windows)</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Tyre Cleaning & Shine</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="font-medium">Interior Vacuum Cleaning</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Dashboard Polish</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="font-medium">Seat Cleaning</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Wax Protection</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="font-medium">Engine Bay Cleaning</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Premium Air Freshener</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center cross-mark">✗</td>
+                            <td class="text-center check-mark">✓</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="font-medium font-bold">Service Duration</td>
+                            <td class="text-center font-medium">30-40 min</td>
+                            <td class="text-center font-medium">45-60 min</td>
+                            <td class="text-center font-medium">60-90 min</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-On Services -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Additional Services</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">Customize your car wash with these premium add-ons</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-blue-50 rounded-xl border border-blue-100 hover:border-blue-300 transition-colors" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="wind" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">AC Vent Deep Clean</h3>
+                    <p class="text-2xl font-bold text-blue-600 mb-2">+₹99</p>
+                    <p class="text-gray-600 text-sm">Professional AC vent cleaning with anti-bacterial treatment</p>
+                </div>
+                
+                <div class="text-center p-6 bg-green-50 rounded-xl border border-green-100 hover:border-green-300 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="shield" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Underbody Wash</h3>
+                    <p class="text-2xl font-bold text-green-600 mb-2">+₹149</p>
+                    <p class="text-gray-600 text-sm">Remove salt, dirt, and grime from car's undercarriage</p>
+                </div>
+                
+                <div class="text-center p-6 bg-purple-50 rounded-xl border border-purple-100 hover:border-purple-300 transition-colors" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="sun" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Ceramic Coating</h3>
+                    <p class="text-2xl font-bold text-purple-600 mb-2">+₹299</p>
+                    <p class="text-gray-600 text-sm">Long-lasting paint protection with glossy finish</p>
+                </div>
+                
+                <div class="text-center p-6 bg-orange-50 rounded-xl border border-orange-100 hover:border-orange-300 transition-colors" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="zap" class="w-8 h-8 text-orange-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Steam Cleaning</h3>
+                    <p class="text-2xl font-bold text-orange-600 mb-2">+₹199</p>
+                    <p class="text-gray-600 text-sm">Deep sanitization using high-temperature steam</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Equipment & Products -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Premium Equipment & Products</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">We use only the best tools and eco-friendly products for your car</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="droplets" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">High-Pressure Washers</h3>
+                    <p class="text-gray-600 mb-4">Professional grade equipment that removes dirt without damaging paint</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Adjustable pressure settings</li>
+                        <li>• Hot water capability</li>
+                        <li>• Eco-friendly operation</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="leaf" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Eco-Friendly Products</h3>
+                    <p class="text-gray-600 mb-4">Biodegradable soaps and shampoos safe for your car and environment</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• pH balanced formulas</li>
+                        <li>• Non-toxic ingredients</li>
+                        <li>• Safe for all car types</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="maximize" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Microfiber Towels</h3>
+                    <p class="text-gray-600 mb-4">Premium quality towels that clean without scratching</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Lint-free drying</li>
+                        <li>• Scratch-free cleaning</li>
+                        <li>• Machine washable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Guarantee -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Our Service Guarantee</h2>
+            <div class="grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="clock" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">On-Time Service</h3>
+                    <p class="text-blue-100">We arrive on time, every time. Punctuality guaranteed or service is free.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">100% Satisfaction</h3>
+                    <p class="text-blue-100">Not happy with our service? We'll redo it for free or provide full refund.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="award" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quality Assured</h3>
+                    <p class="text-blue-100">Trained professionals using premium products with insurance coverage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Frequently Asked Questions</h2>
+                <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">Everything you need to know about our services</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up">
+                    <h3 class="font-semibold text-gray-900 mb-2">How often should I get my car washed?</h3>
+                    <p class="text-gray-600">For regular use, we recommend our Full Service every 2 weeks and Basic Exterior weekly. Our Monthly Package is perfect for this schedule.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="font-semibold text-gray-900 mb-2">Do you wash cars during monsoon?</h3>
+                    <p class="text-gray-600">Yes! Monsoon washing is actually more important. We offer special underbody wash and anti-rust treatments during rainy season.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="font-semibold text-gray-900 mb-2">What if my car is very dirty?</h3>
+                    <p class="text-gray-600">No problem! Our team handles everything from daily dust to heavy mud. For extremely dirty cars, we recommend Premium Detailing service.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="600">
+                    <h3 class="font-semibold text-gray-900 mb-2">Can you service luxury cars?</h3>
+                    <p class="text-gray-600">Absolutely! Our team is trained for all car types including luxury vehicles. We use specialized products and techniques for premium cars.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Ready to Book Your Service?</h2>
+            <p class="text-xl mb-8" data-aos="fade-up" data-aos-delay="200">Choose your package and schedule a convenient time for professional car wash</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="booking.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Book Service Now
+                </a>
+                <a href="tel:+918805173650" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    📞 Call +91 8805173650
+                </a>
+            </div>
+            <div class="mt-6 text-blue-100">
+                <p class="text-sm">💳 Payment after service | 🚀 Same day booking available | 🌟 100% satisfaction guaranteed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WashX</h3>
+                    <p class="text-gray-300 mb-4">Xtra Clean. Xtra Fast.</p>
+                    <p class="text-gray-300 text-sm">Professional doorstep car wash service with premium products and guaranteed satisfaction.</p>
+                    <div class="mt-4">
+                        <p class="text-yellow-400 font-semibold">⭐ 4.8/5 Rating | 1000+ Happy Customers</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Basic Exterior Wash (₹199)</li>
+                        <li>Full Interior + Exterior (₹299)</li>
+                        <li>Premium Detailing (₹599)</li>
+                        <li>Monthly Packages (₹1299)</li>
+                        <li>Add-on Services</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="hover:text-white">Services</a></li>
+                        <li><a href="offers.html" class="hover:text-white">Offers</a></li>
+                        <li><a href="testimonials.html" class="hover:text-white">Reviews</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><strong>📞 Emergency:</strong> +91 8805173650</li>
+                        <li>📧 washxcare@gmail.com</li>
+                        <li>📍 Nashik | Pune | Mumbai</li>
+                        <li>🕐 Mon-Sat: 5AM-8PM | Sun: 5AM-6PM</li>
+                    </ul>
+                    <div class="mt-4">
+                        <p class="text-green-400 font-semibold">💚 100% Eco-Friendly Products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 WashX. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p class="mt-2 text-sm">Licensed car wash service | Insured for your protection</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918805173650?text=Hi! I want to know more about your car wash services" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 animate-pulse">
+        <i data-feather="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WashX - Xtra Clean. Xtra Fast. | Professional Doorstep Car Wash Service</title>
+    <meta name="description" content="Professional doorstep car wash service in Mumbai, Pune, Mumbai. Book WashX for Xtra Clean, Xtra Fast car washing with trained experts. Starting at ₹199 only!">
+
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="WashX - Xtra Clean. Xtra Fast. Car Wash Service">
+    <meta property="og:description" content="Professional doorstep car wash service with trained experts. Book now for convenient car washing at your location.">
+    <meta property="og:image" content="/static/washx-social.jpg">
+    <meta property="og:url" content="https://washx.com">
+    <meta property="og:type" content="website">
+
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "WashX",
+      "description": "Professional doorstep car wash service",
+      "telephone": "+91-8805173650",
+      "email": "washxcare@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN",
+        "addressRegion": "Maharashtra"
+      },
+      "serviceArea": ["Nashik", "Pune", "Mumbai"],
+      "priceRange": "₹199-₹599"
+    }
+    </script>
+
+    <!-- Favicon with Fallback -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+
+    <!-- External Libraries with Fallbacks -->
+    <script src="https://cdn.tailwindcss.com" onerror="document.write('<link rel=\'stylesheet\' href=\'/static/tailwind-fallback.css\'>')"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        .water-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .water-effect::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        .water-effect:hover::after {
+            animation: water-flow 1.5s ease-in-out;
+            opacity: 1;
+        }
+        @keyframes water-flow {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #1D4ED8 100%);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Mobile-first improvements */
+        @media (max-width: 768px) {
+            .hero-text { font-size: 2rem; }
+            .cta-button { width: 100%; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-white">
+    <!-- Emergency Banner -->
+    <div class="bg-red-600 text-white text-center py-2 text-sm">
+        🚨 <strong>Emergency Car Wash:</strong> Call +91 8805173650 (Available 24/7) 🚨
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-600">WashX</h1>
+                        <p class="text-xs text-gray-500">Xtra Clean. Xtra Fast.</p>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-btn text-gray-700 p-2">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-blue-600">Home</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                    <a href="offers.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Offers</a>
+                    <a href="testimonials.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Reviews</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="booking.html" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 cta-button">Book Now</a>
+                    <a href="tel:+919876543210" class="text-blue-600 hover:text-blue-800 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden md:hidden bg-white border-t">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 text-blue-600 font-medium">Home</a>
+                    <a href="services.html" class="block px-3 py-2 text-gray-700">Services</a>
+                    <a href="offers.html" class="block px-3 py-2 text-gray-700">Offers</a>
+                    <a href="testimonials.html" class="block px-3 py-2 text-gray-700">Reviews</a>
+                    <a href="about.html" class="block px-3 py-2 text-gray-700">About</a>
+                    <a href="booking.html" class="block px-3 py-2 bg-blue-600 text-white rounded-md mx-3">Book Now</a>
+                    <a href="tel:+919876543210" class="block px-3 py-2 text-blue-600 font-semibold">📞 Call Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white pt-20 pb-16 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="text-yellow-300 font-semibold mb-4 text-lg">
+                        🌟 India's #1 Doorstep Car Wash Service
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 hero-text">
+                        Xtra Clean.<br>
+                        Xtra Fast.
+                    </h1>
+                    <p class="text-xl mb-4 text-blue-100">
+                        Professional car wash service that comes to your doorstep. 
+                    </p>
+                    <div class="text-lg mb-8 space-y-2">
+                        <p class="flex items-center"><span class="mr-3">✅</span> No waiting. No hassle. We bring the shine to your doorstep.</p>
+                        <p class="flex items-center"><span class="mr-3">⏰</span> Service completed in 45-60 minutes</p>
+                        <p class="flex items-center"><span class="mr-3">🌍</span> Eco-friendly products safe for your car</p>
+                        <p class="flex items-center"><span class="mr-3">💯</span> 100% satisfaction guarantee</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="booking.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors water-effect cta-button text-center">
+                            Book Now - Starting ₹199
+                        </a>
+                        <a href="tel:+919876543210" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-600 transition-colors text-center">
+                            📞 Call +91 8805173650
+                        </a>
+                    </div>
+                    <div class="mt-6 text-sm text-blue-100">
+                        <p>⭐ Trusted by 1000+ customers | 🚀 Same day service available</p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="lg:block hidden">
+                    <img src="/static/hero-car-wash.jpg" alt="Professional car wash service at doorstep" class="rounded-lg shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Banner -->
+    <section class="bg-blue-50 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-lg text-gray-700">
+                <strong>Now Serving:</strong> 
+                <span class="text-blue-600 font-semibold">Nashik</span> • 
+                <span class="text-blue-600 font-semibold">Pune</span> • 
+                <span class="text-blue-600 font-semibold">Mumbai</span>
+            </p>
+            <p class="text-sm text-gray-600 mt-2">More cities coming soon! Check if we serve your area.</p>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Preview -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600">Join thousands of satisfied customers across India</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Amazing service! They came right to my office and my car looked brand new. Highly recommend WashX!"</p>
+                    <p class="font-semibold text-gray-900">- Rahul S., Nashik</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Professional team, eco-friendly products, and great pricing. The convenience is unmatched!"</p>
+                    <p class="font-semibold text-gray-900">- Priya K., Pune</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                        <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The monthly package is fantastic! My car stays clean without any effort from my side."</p>
+                    <p class="font-semibold text-gray-900">- Amit D., Mumbai</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="testimonials.html" class="text-blue-600 hover:text-blue-800 font-semibold">Read More Reviews →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose WashX -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Why Choose WashX?</h2>
+                <p class="text-gray-600 text-lg" data-aos="fade-up" data-aos-delay="200">Experience the convenience of professional car care at your doorstep</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg feature-card" data-aos="zoom-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="clock" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Save Time</h3>
+                    <p class="text-gray-600 mb-4">No more waiting in queues. We come to you at your convenience.</p>
+                    <p class="text-sm text-blue-600 font-semibold">Service in 45-60 minutes</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="shield-check" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Professional Care</h3>
+                    <p class="text-gray-600 mb-4">Trained experts using premium products for your car's safety.</p>
+                    <p class="text-sm text-green-600 font-semibold">100% car-safe products</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg feature-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="dollar-sign" class="w-8 h-8 text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Affordable Packages</h3>
+                    <p class="text-gray-600 mb-4">Premium service at competitive prices with flexible plans.</p>
+                    <p class="text-sm text-yellow-600 font-semibold">Starting at ₹199 only</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-xl shadow-lg feature-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="award" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Satisfaction Guarantee</h3>
+                    <p class="text-gray-600 mb-4">Not happy? We'll redo the service at no extra cost.</p>
+                    <p class="text-sm text-purple-600 font-semibold">100% money-back guarantee</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
+                <p class="text-gray-600">Choose the perfect package for your car</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Basic Exterior Wash</h3>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">₹199</div>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li>✅ Exterior foam wash</li>
+                        <li>✅ Glass cleaning</li>
+                        <li>✅ Tyre cleaning & shine</li>
+                        <li>✅ 30-40 minutes</li>
+                    </ul>
+                    <a href="booking.html" class="block w-full bg-blue-600 text-white py-2 rounded-lg text-center hover:bg-blue-700 transition-colors">Book Now</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-blue-200" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">MOST POPULAR</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Full Interior + Exterior</h3>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">₹299</div>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li>✅ Everything in Basic</li>
+                        <li>✅ Interior vacuum cleaning</li>
+                        <li>✅ Dashboard polish</li>
+                        <li>✅ Seat cleaning</li>
+                        <li>✅ 45-60 minutes</li>
+                    </ul>
+                    <a href="booking.html" class="block w-full bg-blue-600 text-white py-2 rounded-lg text-center hover:bg-blue-700 transition-colors">Book Now</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Premium Detailing</h3>
+                    <div class="text-3xl font-bold text-blue-600 mb-4">₹599</div>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li>✅ Everything in Full Service</li>
+                        <li>✅ Wax protection</li>
+                        <li>✅ Engine bay cleaning</li>
+                        <li>✅ Air freshener</li>
+                        <li>✅ 60-90 minutes</li>
+                    </ul>
+                    <a href="booking.html" class="block w-full bg-blue-600 text-white py-2 rounded-lg text-center hover:bg-blue-700 transition-colors">Book Now</a>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="services.html" class="text-blue-600 hover:text-blue-800 font-semibold">View All Services & Packages →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600">Quick answers to common questions</p>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <h3 class="font-semibold text-gray-900 mb-2">How long does a car wash take?</h3>
+                    <p class="text-gray-600">Basic exterior wash takes 30-40 minutes, while our full service takes 45-60 minutes. Premium detailing can take up to 90 minutes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="font-semibold text-gray-900 mb-2">Do you provide water and electricity?</h3>
+                    <p class="text-gray-600">Yes! Our team comes fully equipped with water tanks and portable equipment. You don't need to provide anything.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="font-semibold text-gray-900 mb-2">What areas do you serve?</h3>
+                    <p class="text-gray-600">We currently serve Nashik, Pune, and Mumbai. We're expanding to more cities soon! Call us to check if we serve your area.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="600">
+                    <h3 class="font-semibold text-gray-900 mb-2">What if I'm not satisfied with the service?</h3>
+                    <p class="text-gray-600">We offer a 100% satisfaction guarantee. If you're not happy, we'll redo the service for free or provide a full refund.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">Ready to Experience WashX?</h2>
+            <p class="text-xl mb-8" data-aos="fade-up" data-aos-delay="200">Book your first wash today and see why thousands trust us with their car care</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="booking.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors cta-button">
+                    Book Now - Starting ₹199
+                </a>
+                <a href="tel:+918805173650" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    📞 Call +91 8805173650
+                </a>
+            </div>
+            <div class="mt-6 text-blue-100">
+                <p class="text-sm">💳 Payment collected after service | 🚀 Same day booking available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WashX</h3>
+                    <p class="text-gray-300 mb-4">Xtra Clean. Xtra Fast.</p>
+                    <p class="text-gray-300 text-sm">Professional doorstep car wash service with a commitment to quality and customer satisfaction.</p>
+                    <div class="mt-4">
+                        <p class="text-yellow-400 font-semibold">⭐ 4.8/5 Rating | 1000+ Happy Customers</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="hover:text-white">Services</a></li>
+                        <li><a href="offers.html" class="hover:text-white">Offers</a></li>
+                        <li><a href="testimonials.html" class="hover:text-white">Reviews</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Basic Exterior Wash (₹199)</li>
+                        <li>Full Interior + Exterior (₹299)</li>
+                        <li>Premium Detailing (₹599)</li>
+                        <li>Monthly Packages</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><strong>📞 Emergency:</strong> +91 8805173650</li>
+                        <li>📧 washxcare@gmail.com</li>
+                        <li>📍 Nashik | Pune | Mumbai</li>
+                        <li>🕐 Mon-Sat: 5AM-8PM | Sun: 5AM-6PM</li>
+                    </ul>
+                    <div class="mt-4">
+                        <p class="text-green-400 font-semibold">💚 100% Eco-Friendly Products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 WashX. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p class="mt-2 text-sm">Licensed car wash service | Insured for your protection</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918805173650?text=Hi! I want to book a car wash service" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 animate-pulse">
+        <i data-feather="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+
+        // Add loading state for buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = 'Loading...';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.opacity = '1';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
