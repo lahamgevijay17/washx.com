@@ -84,7 +84,7 @@ This repository contains a fully responsive, modern website built with cutting-e
 1. **Basic Exterior Wash** - ₹199 (30-40 mins)
    - Exterior foam wash, glass cleaning, tire shine
 
-2. **Full Interior + Exterior** - ₹399 (45-60 mins) *Most Popular*
+2. **Full Interior + Exterior** - ₹299 (45-60 mins) *Most Popular*
    - Everything in Basic + interior vacuum, dashboard polish, seat cleaning
 
 3. **Premium Detailing** - ₹599 (60-90 mins)
@@ -165,15 +165,15 @@ Currently serving:
 ## 📞 Contact Information
 
 **WashX Car Wash Service**
-- 📱 Phone: +91 98765 43210 (24/7 Emergency)
-- 📧 Email: support@washx.com
+- 📱 Phone: +91 8805173650 (24/7 Emergency)
+- 📧 Email: washxcare@gmail.com
 - 🌐 Website: www.washx.com
-- 💬 WhatsApp: +91 98765 43210
+- 💬 WhatsApp: +91 8805173650
 - 📍 Service Areas: Mumbai | Pune | Bangalore
 
 **Business Hours:**
-- Monday - Saturday: 7:00 AM - 8:00 PM
-- Sunday: 8:00 AM - 6:00 PM
+- Monday - Saturday: 5:00 AM - 8:00 PM
+- Sunday: 5:00 AM - 6:00 PM
 - Emergency Service: 24/7 Available
 
 ## 📄 License
