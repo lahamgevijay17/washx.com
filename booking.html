@@ -225,11 +225,67 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="serviceAddress" class="block text-sm font-medium text-gray-700 mb-2">Service Address *</label>
-                                <textarea id="serviceAddress" class="form-input" rows="3" placeholder="Enter complete address with landmark" required></textarea>
-                                <p class="text-xs text-gray-500 mt-1">Please provide complete address with landmark for easy location</p>
-                                <div class="error-message" id="addressError"></div>
-                            </div>
+                                <!-- Address Textarea as in your form -->
+<label for="serviceAddress" class="block text-sm font-medium text-gray-700 mb-2">Service Address *</label>
+<textarea id="serviceAddress" name="serviceAddress" class="form-input" rows="3" placeholder="Enter complete address with landmark" required></textarea>
+<p class="text-xs text-gray-500 mt-1">Please provide complete address with landmark for easy location</p>
+<div class="error-message" id="addressError"></div>
+</div>
+
+<!-- New Location Share Section -->
+<div class="form-group">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Share Your Location (Optional)</label>
+    <button type="button" id="shareLocationBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+        Share My Location
+    </button>
+    <p id="locationStatus" class="mt-2 text-sm text-gray-500"></p>
+    <input type="hidden" id="userLatitude" name="userLatitude">
+    <input type="hidden" id="userLongitude" name="userLongitude">
+</div>
+
+<script>
+    const shareLocationBtn = document.getElementById('shareLocationBtn');
+    const locationStatus = document.getElementById('locationStatus');
+    const userLatInput = document.getElementById('userLatitude');
+    const userLonInput = document.getElementById('userLongitude');
+
+    shareLocationBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            locationStatus.textContent = 'Geolocation is not supported by your browser.';
+            return;
+        }
+        locationStatus.textContent = 'Locating...';
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude.toFixed(6);
+                const longitude = position.coords.longitude.toFixed(6);
+
+                userLatInput.value = latitude;
+                userLonInput.value = longitude;
+
+                locationStatus.textContent = `Location shared: Lat ${latitude}, Lon ${longitude}`;
+            },
+            (error) => {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        locationStatus.textContent = 'Permission denied. Please allow location access.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        locationStatus.textContent = 'Position unavailable.';
+                        break;
+                    case error.TIMEOUT:
+                        locationStatus.textContent = 'Location request timed out.';
+                        break;
+                    default:
+                        locationStatus.textContent = 'Unable to retrieve location.';
+                        break;
+                }
+            }
+        );
+    });
+</script>
+
 
                             <!-- Car Details -->
                             <div class="grid md:grid-cols-2 gap-6">
