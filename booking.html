@@ -28,6 +28,12 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
+        .booking-card.selected {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
         .sticky-cta {
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
         }
@@ -68,9 +74,38 @@
         .form-input.success {
             border-color: #10B981;
         }
+        
+        /* Step indicator styles */
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background: #3B82F6;
+            color: white;
+        }
+        .step-indicator.completed {
+            background: #10B981;
+            color: white;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .confirmation-modal {
+            backdrop-filter: blur(10px);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50">
+    
     <!-- Navigation -->
     <nav class="bg-white shadow-md fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,95 +142,162 @@
         </div>
     </section>
 
-    <!-- Booking Form -->
-    <section class="py-12">
+    <!-- Step Progress Indicator -->
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="flex items-center justify-center space-x-4 mb-8">
+            <div class="step-indicator active flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 font-semibold">
+                1
+            </div>
+            <div class="w-16 h-1 bg-gray-200 rounded"></div>
+            <div class="step-indicator flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 font-semibold">
+                2
+            </div>
+            <div class="w-16 h-1 bg-gray-200 rounded"></div>
+            <div class="step-indicator flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 font-semibold">
+                3
+            </div>
+        </div>
+        
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2" id="stepTitle">Choose Your Service</h2>
+            <p class="text-gray-600" id="stepDescription">Select the car wash service that best fits your needs</p>
+        </div>
+    </div>
+
+    <!-- Step 1: Service Selection -->
+    <div id="step1" class="max-w-6xl mx-auto px-4 pb-8">
+        <div class="grid md:grid-cols-2 gap-4">
+            <!-- Basic Service -->
+            <div class="service-option booking-card border-2 border-gray-200 rounded-lg p-4 cursor-pointer relative" 
+                 data-service="basic" data-price="199">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">Basic Exterior Wash</h3>
+                    <span class="text-2xl font-bold text-blue-600">₹199</span>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                    <li>✅ Exterior foam wash</li>
+                    <li>✅ Glass cleaning</li>
+                    <li>✅ Tyre cleaning & shine</li>
+                </ul>
+                <p class="text-xs text-gray-500">⏱️ Duration: 30-40 minutes</p>
+            </div>
+
+            <!-- Full Service -->
+            <div class="service-option booking-card border-2 border-gray-200 rounded-lg p-4 cursor-pointer relative" 
+                 data-service="full" data-price="299">
+                <div class="absolute top-1/2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">POPULAR</div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">Full Interior + Exterior</h3>
+                    <span class="text-2xl font-bold text-blue-600">₹299</span>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                    <li>✅ Everything in Basic</li>
+                    <li>✅ Interior vacuum cleaning</li>
+                    <li>✅ Dashboard polish</li>
+                    <li>✅ Seat cleaning</li>
+                </ul>
+                <p class="text-xs text-gray-500">⏱️ Duration: 45-60 minutes</p>
+            </div>
+
+            <!-- Premium Service -->
+            <div class="service-option booking-card border-2 border-gray-200 rounded-lg p-4 cursor-pointer" 
+                 data-service="premium" data-price="599">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">Premium Detailing</h3>
+                    <span class="text-2xl font-bold text-blue-600">₹599</span>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                    <li>✅ Everything in Full Service</li>
+                    <li>✅ Wax protection</li>
+                    <li>✅ Engine bay cleaning</li>
+                    <li>✅ Air freshener</li>
+                </ul>
+                <p class="text-xs text-gray-500">⏱️ Duration: 60-90 minutes</p>
+            </div>
+
+            <!-- Monthly Package -->
+            <div class="service-option booking-card border-2 border-gray-200 rounded-lg p-4 cursor-pointer" 
+                 data-service="monthly" data-price="1299">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">Monthly Package</h3>
+                    <span class="text-2xl font-bold text-blue-600">₹1299</span>
+                </div>
+                <ul class="text-sm text-gray-600 space-y-1 mb-3">
+                    <li>✅ 4 Full Services per month</li>
+                    <li>✅ Priority booking</li>
+                    <li>✅ Free emergency wash</li>
+                    <li>✅ Best value package</li>
+                </ul>
+                <p class="text-xs text-gray-500">💰 Save ₹297 per month!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center confirmation-modal">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 transform">
+            <div class="text-center">
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-feather="check-circle" class="w-10 h-10 text-blue-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Confirm Your Service</h3>
+                <div id="selectedServiceDetails" class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <!-- Service details will be populated here -->
+                </div>
+                <p class="text-gray-600 mb-6">Proceed to fill your details and complete the booking?</p>
+                <div class="flex space-x-4">
+                    <button id="cancelSelection" class="flex-1 bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                        Go Back
+                    </button>
+                    <button id="proceedToBooking" class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2: Booking Form -->
+    <div id="step2" class="py-12 hidden">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Main Booking Form -->
                 <div class="lg:col-span-2">
                     <div class="bg-white rounded-lg shadow-lg p-6">
                         <h2 class="text-2xl font-bold text-gray-900 mb-6">Service Details</h2>
-
+                        
                         <form id="bookingForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-    <!-- Web3Forms Configuration -->
-    <input type="hidden" name="access_key" value="de64224d-d3ec-4cf6-9ac5-22abad9821dc">
-    <input type="hidden" name="subject" value="New Car Wash Booking - WashX">
-    <input type="hidden" name="from_name" value="WashX Booking System">
-    <input type="hidden" id="selectedServiceInput" name="selected_service" value="">
-    <input type="hidden" id="selectedPriceInput" name="service_price" value="">
-
-                            <!-- Service Selection -->
-                            <div class="form-group">
-                                <label class="block text-sm font-medium text-gray-700 mb-3">Choose Your Service *</label>
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="basic" data-price="199">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold">Basic Exterior Wash</h3>
-                                            <span class="text-2xl font-bold text-blue-600">₹199</span>
-                                        </div>
-                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
-                                            <li>✓ Exterior foam wash</li>
-                                            <li>✓ Glass cleaning</li>
-                                            <li>✓ Tyre cleaning & shine</li>
-                                        </ul>
-                                        <p class="text-xs text-gray-500">⏱️ Duration: 30-40 minutes</p>
+                            <!-- Web3Forms Configuration -->
+                            <input type="hidden" name="access_key" value="de64224d-d3ec-4cf6-9ac5-22abad9821dc">
+                            <input type="hidden" name="subject" value="New Car Wash Booking - WashX">
+                            <input type="hidden" name="from_name" value="WashX Booking System">
+                            <input type="hidden" id="selectedServiceInput" name="selected_service" value="">
+                            <input type="hidden" id="selectedPriceInput" name="service_price" value="">
+                            
+                            <!-- Selected Service Summary -->
+                            <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Selected Service:</h4>
+                                        <p id="summaryServiceName" class="text-xl font-bold text-blue-600"></p>
+                                        <p id="summaryDuration" class="text-sm text-gray-600"></p>
                                     </div>
-
-                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer relative" data-service="full" data-price="299">
-                                        <div class="absolute top-12 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">POPULAR</div>
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold">Full Interior + Exterior</h3>
-                                            <span class="text-2xl font-bold text-blue-600">₹299</span>
-                                        </div>
-                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
-                                            <li>✓ Everything in Basic</li>
-                                            <li>✓ Interior vacuum cleaning</li>
-                                            <li>✓ Dashboard polish</li>
-                                            <li>✓ Seat cleaning</li>
-                                        </ul>
-                                        <p class="text-xs text-gray-500">⏱️ Duration: 45-60 minutes</p>
-                                    </div>
-
-                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="premium" data-price="599">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold">Premium Detailing</h3>
-                                            <span class="text-2xl font-bold text-blue-600">₹599</span>
-                                        </div>
-                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
-                                            <li>✓ Everything in Full Service</li>
-                                            <li>✓ Wax protection</li>
-                                            <li>✓ Engine bay cleaning</li>
-                                            <li>✓ Air freshener</li>
-                                        </ul>
-                                        <p class="text-xs text-gray-500">⏱️ Duration: 60-90 minutes</p>
-                                    </div>
-
-                                    <div class="service-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer" data-service="monthly" data-price="1299">
-                                        <div class="flex justify-between items-start mb-2">
-                                            <h3 class="font-semibold">Monthly Package</h3>
-                                            <span class="text-2xl font-bold text-blue-600">₹1299</span>
-                                        </div>
-                                        <ul class="text-sm text-gray-600 space-y-1 mb-3">
-                                            <li>✓ 4 Full Services per month</li>
-                                            <li>✓ Priority booking</li>
-                                            <li>✓ Free emergency wash</li>
-                                            <li>✓ Best value package</li>
-                                        </ul>
-                                        <p class="text-xs text-gray-500">💰 Save ₹297 per month!</p>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-gray-800">₹<span id="summaryPrice"></span></p>
+                                        <button type="button" id="changeService" class="text-sm text-blue-600 hover:underline">Change Service</button>
                                     </div>
                                 </div>
-                                <div class="error-message" id="serviceError"></div>
                             </div>
 
                             <!-- Date & Time Selection -->
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="form-group">
-                                    <label for="serviceDate" class="block text-sm font-medium text-gray-700 mb-2">Preferred Date *</label>
+                                    <label for="serviceDate" class="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
                                     <input type="date" id="serviceDate" name="service_date" class="form-input" min="" required>
                                     <div class="error-message" id="dateError"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="serviceTime" class="block text-sm font-medium text-gray-700 mb-2">Preferred Time *</label>
+                                    <label for="serviceTime" class="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
                                     <select id="serviceTime" name="service_time" class="form-input" required>
                                         <option value="">Select Time Slot</option>
                                         <option value="7am-9am">7:00 AM - 9:00 AM</option>
@@ -211,20 +313,19 @@
 
                             <!-- Customer Information -->
                             <h3 class="text-xl font-semibold text-gray-900 mb-4">Your Information</h3>
-
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="form-group">
-                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                                     <input type="text" id="customerName" name="customer_name" class="form-input" placeholder="Enter your full name" required>
                                     <div class="error-message" id="nameError"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="customerPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                    <label for="customerPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                                     <input type="tel" id="customerPhone" name="customer_phone" class="form-input" placeholder="+91 8805173650" required>
                                     <div class="error-message" id="phoneError"></div>
                                 </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label for="customerEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                                 <input type="email" id="customerEmail" name="customer_email" class="form-input" placeholder="your@email.com (for booking confirmation)">
@@ -232,67 +333,22 @@
                             </div>
 
                             <div class="form-group">
-                                <!-- Address Textarea as in your form -->
-<label for="serviceAddress" class="block text-sm font-medium text-gray-700 mb-2">Service Address *</label>
-<textarea id="serviceAddress" name="service_address" name="serviceAddress" class="form-input" rows="3" placeholder="Enter complete address with landmark" required></textarea>
-<p class="text-xs text-gray-500 mt-1">Please provide complete address with landmark for easy location</p>
-<div class="error-message" id="addressError"></div>
-</div>
+                                <label for="serviceAddress" class="block text-sm font-medium text-gray-700 mb-2">Service Address</label>
+                                <textarea id="serviceAddress" name="service_address" class="form-input" rows="3" placeholder="Enter complete address with landmark" required></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Please provide complete address with landmark for easy location</p>
+                                <div class="error-message" id="addressError"></div>
+                            </div>
 
-<!-- New Location Share Section -->
-<div class="form-group">
-    <label class="block text-sm font-medium text-gray-700 mb-2">Share Your Location (Optional)</label>
-    <button type="button" id="shareLocationBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
-        Share My Location
-    </button>
-    <p id="locationStatus" class="mt-2 text-sm text-gray-500"></p>
-    <input type="hidden" id="userLatitude" name="user_latitude" name="userLatitude">
-    <input type="hidden" id="userLongitude" name="user_longitude" name="userLongitude">
-</div>
-
-<script>
-    const shareLocationBtn = document.getElementById('shareLocationBtn');
-    const locationStatus = document.getElementById('locationStatus');
-    const userLatInput = document.getElementById('userLatitude');
-    const userLonInput = document.getElementById('userLongitude');
-
-    shareLocationBtn.addEventListener('click', () => {
-        if (!navigator.geolocation) {
-            locationStatus.textContent = 'Geolocation is not supported by your browser.';
-            return;
-        }
-        locationStatus.textContent = 'Locating...';
-
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const latitude = position.coords.latitude.toFixed(6);
-                const longitude = position.coords.longitude.toFixed(6);
-
-                userLatInput.value = latitude;
-                userLonInput.value = longitude;
-
-                locationStatus.textContent = `Location shared: Lat ${latitude}, Lon ${longitude}`;
-            },
-            (error) => {
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        locationStatus.textContent = 'Permission denied. Please allow location access.';
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        locationStatus.textContent = 'Position unavailable.';
-                        break;
-                    case error.TIMEOUT:
-                        locationStatus.textContent = 'Location request timed out.';
-                        break;
-                    default:
-                        locationStatus.textContent = 'Unable to retrieve location.';
-                        break;
-                }
-            }
-        );
-    });
-</script>
-
+                            <!-- Geolocation Section -->
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Share Your Location (Optional)</label>
+                                <button type="button" id="shareLocationBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                                    <i data-feather="map-pin" class="w-4 h-4 inline mr-2"></i>Share My Location
+                                </button>
+                                <p id="locationStatus" class="mt-2 text-sm text-gray-500"></p>
+                                <input type="hidden" id="userLatitude" name="user_latitude">
+                                <input type="hidden" id="userLongitude" name="user_longitude">
+                            </div>
 
                             <!-- Car Details -->
                             <div class="grid md:grid-cols-2 gap-6">
@@ -338,7 +394,7 @@
                                 <div class="grid md:grid-cols-3 gap-4">
                                     <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                                         <input type="radio" name="payment_method" value="cash" class="mr-3" checked>
-                                        <span>💵 Cash on Service</span>
+                                        <span>💰 Cash on Service</span>
                                     </label>
                                     <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                                         <input type="radio" name="payment_method" value="upi" class="mr-3">
@@ -354,7 +410,7 @@
                             <!-- Submit Button -->
                             <div class="pt-6 border-t">
                                 <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                                    Confirm Booking
+                                    <i data-feather="calendar-check" class="w-5 h-5 inline mr-2"></i>Confirm Booking
                                 </button>
                                 <p class="text-xs text-gray-500 text-center mt-2">
                                     By booking, you agree to our Terms of Service and Privacy Policy
@@ -368,40 +424,38 @@
                 <div class="lg:col-span-1">
                     <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
                         <h3 class="text-xl font-semibold text-gray-900 mb-4">Booking Summary</h3>
-
                         <div id="bookingSummary" class="space-y-4">
-                            <div class="text-center py-8 text-gray-500">
-                                <i data-feather="clipboard" class="w-12 h-12 mx-auto mb-4 text-gray-400"></i>
-                                <p>Select a service to see booking summary</p>
+                            <div id="selectedServiceSummary" class="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                                <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
-
-                        <div id="costBreakdown" class="hidden border-t pt-4 mt-6">
+                        
+                        <div id="costBreakdown" class="border-t pt-4 mt-6">
                             <div class="space-y-2">
                                 <div class="flex justify-between">
-                                    <span>Service Cost:</span>
-                                    <span id="serviceCost">₹0</span>
+                                    <span>Service Cost</span>
+                                    <span id="serviceCost">₹<span id="servicePrice">0</span></span>
                                 </div>
                                 <div class="flex justify-between text-sm text-gray-600">
-                                    <span>Travel Charges:</span>
+                                    <span>Travel Charges</span>
                                     <span>FREE</span>
                                 </div>
                                 <div class="flex justify-between text-sm text-gray-600">
-                                    <span>Equipment:</span>
+                                    <span>Equipment</span>
                                     <span>FREE</span>
                                 </div>
-                                <div class="border-t pt-2 mt-2">
-                                    <div class="flex justify-between text-lg font-bold">
-                                        <span>Total:</span>
-                                        <span id="totalCost">₹0</span>
-                                    </div>
+                            </div>
+                            <div class="border-t pt-2 mt-2">
+                                <div class="flex justify-between text-lg font-bold">
+                                    <span>Total</span>
+                                    <span id="totalCost">₹<span id="totalPrice">0</span></span>
                                 </div>
                             </div>
-
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg text-sm">
-                                <p class="text-green-800 font-semibold">Payment collected at service</p>
-                                <p class="text-green-600 text-xs">No advance payment required</p>
-                            </div>
+                        </div>
+                        
+                        <div class="mt-4 p-3 bg-green-50 rounded-lg text-sm">
+                            <p class="text-green-800 font-semibold">💰 Payment collected at service</p>
+                            <p class="text-green-600 text-xs">No advance payment required</p>
                         </div>
                     </div>
 
@@ -413,23 +467,65 @@
                             <p><strong>💬 WhatsApp:</strong> +91 8805173650</p>
                             <p><strong>📧 Email:</strong> washxcare@gmail.com</p>
                         </div>
-                        <a href="https://wa.me/918805173650?text=Hi! I need help with booking" target="_blank" class="mt-3 block w-full bg-green-500 text-white text-center py-2 rounded-lg hover:bg-green-600 transition-colors">
+                        <a href="https://wa.me/918805173650?text=Hi! I need help with booking" target="_blank" 
+                           class="mt-3 block w-full bg-green-500 text-white text-center py-2 rounded-lg hover:bg-green-600 transition-colors">
                             Chat on WhatsApp
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Step 3: Success Message -->
+    <div id="step3" class="max-w-2xl mx-auto px-4 pb-8 hidden fade-in">
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-feather="check-circle" class="w-10 h-10 text-green-600"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Booking Confirmed!</h2>
+            <p class="text-gray-600 mb-6">Your car wash service has been successfully booked. We'll contact you shortly to confirm the details.</p>
+            
+            <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                <div class="grid md:grid-cols-2 gap-4 text-left">
+                    <div>
+                        <p class="text-sm text-gray-600">Service:</p>
+                        <p id="confirmServiceName" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Amount:</p>
+                        <p class="font-semibold">₹<span id="confirmPrice"></span></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Date & Time:</p>
+                        <p id="confirmDateTime" class="font-semibold"></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Contact:</p>
+                        <p id="confirmPhone" class="font-semibold"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+918805173650" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    <i data-feather="phone" class="w-4 h-4 inline mr-2"></i>Call Us: +91 8805173650
+                </a>
+                <a href="https://wa.me/918805173650" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                    <i data-feather="message-circle" class="w-4 h-4 inline mr-2"></i>WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- WhatsApp Booking Alternative -->
     <section class="py-12 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Prefer WhatsApp Booking?</h2>
             <p class="text-gray-600 mb-6">Send us a quick message with your preferred service, date, and time for instant booking.</p>
-            <a href="https://wa.me/918805173650?text=Hi! I want to book a car wash service. Please help me with the details." target="_blank" class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
-                <i data-feather="message-circle" class="w-5 h-5 mr-2"></i>
-                Book via WhatsApp
+            <a href="https://wa.me/918805173650?text=Hi! I want to book a car wash service. Please help me with the details." target="_blank"
+               class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                <i data-feather="message-circle" class="w-5 h-5 mr-2"></i>Book via WhatsApp
             </a>
         </div>
     </section>
@@ -456,29 +552,12 @@
                     <ul class="space-y-2 text-gray-300 text-sm">
                         <li>📞 +91 8805173650</li>
                         <li>📧 washxcare@gmail.com</li>
-                        <li>📍 Nashik | Pune | Mumbai</li>
+                        <li>📍 Nashik • Pune • Mumbai</li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Success Modal -->
-    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="check-circle" class="w-8 h-8 text-green-600"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Booking Confirmed!</h3>
-            <p class="text-gray-600 mb-6">Your car wash has been scheduled successfully. We'll contact you shortly to confirm the details.</p>
-            <div class="space-y-2 text-sm text-left bg-gray-50 p-4 rounded-lg mb-6">
-                <div id="bookingDetails"></div>
-            </div>
-            <button onclick="closeSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                Close
-            </button>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script>
@@ -486,93 +565,146 @@
         AOS.init({ duration: 800, once: true });
         feather.replace();
 
-        // Set minimum date to tomorrow
-        // Set minimum date to today
-const today = new Date();
-document.getElementById('serviceDate').min = today.toISOString().split('T')[0];
-
-        // Dynamic time slot handling
-const serviceDate = document.getElementById("serviceDate");
-const serviceTime = document.getElementById("serviceTime");
-
-        function updateTimeSlots() {
-    const selectedDate = new Date(serviceDate.value);
-    const today = new Date();
-
-    // Reset: show all slots first
-    Array.from(serviceTime.options).forEach(opt => opt.style.display = "block");
-
-    // If user selected today's date, hide past slots
-    if (
-        selectedDate.getFullYear() === today.getFullYear() &&
-        selectedDate.getMonth() === today.getMonth() &&
-        selectedDate.getDate() === today.getDate()
-    ) {
-        const currentHour = today.getHours();
-        const currentMinute = today.getMinutes();
-        const currentTotalMinutes = currentHour * 60 + currentMinute;
-
-        Array.from(serviceTime.options).forEach(opt => {
-            if (opt.value) {
-                // Extract slot times (e.g., "7am-9am")
-                const [startStr, endStr] = opt.value.split("-");
-                
-                function parseTime(str) {
-                    let hour = parseInt(str);
-                    let isPM = str.includes("pm");
-                    if (isPM && hour !== 12) hour += 12;
-                    if (!isPM && hour === 12) hour = 0; // handle 12am
-                    return hour * 60; // convert to minutes
-                }
-
-                const endMinutes = parseTime(endStr);
-
-                // Hide if slot has already passed
-                if (currentTotalMinutes >= endMinutes) {
-                    opt.style.display = "none";
-                }
-            }
-        });
-
-        // If currently selected slot is hidden, reset dropdown
-        if (serviceTime.selectedOptions[0].style.display === "none") {
-            serviceTime.value = "";
-        }
-    }
-}
-
-        
-
-        // Service selection handling
+        // Global variables
         let selectedService = null;
         let selectedPrice = 0;
+        let currentStep = 1;
 
+        // Set minimum date to today
+        const today = new Date();
+        document.getElementById('serviceDate').min = today.toISOString().split('T')[0];
+
+        // Geolocation functionality
+        const shareLocationBtn = document.getElementById('shareLocationBtn');
+        const locationStatus = document.getElementById('locationStatus');
+        const userLatInput = document.getElementById('userLatitude');
+        const userLonInput = document.getElementById('userLongitude');
+
+        shareLocationBtn.addEventListener('click', function() {
+            if (!navigator.geolocation) {
+                locationStatus.textContent = 'Geolocation is not supported by your browser.';
+                return;
+            }
+
+            locationStatus.textContent = 'Locating...';
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const latitude = position.coords.latitude.toFixed(6);
+                    const longitude = position.coords.longitude.toFixed(6);
+                    
+                    userLatInput.value = latitude;
+                    userLonInput.value = longitude;
+                    
+                    locationStatus.innerHTML = `✅ Location shared (Lat: ${latitude}, Lon: ${longitude})`;
+                },
+                function(error) {
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            locationStatus.textContent = 'Permission denied. Please allow location access.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            locationStatus.textContent = 'Position unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            locationStatus.textContent = 'Location request timed out.';
+                            break;
+                        default:
+                            locationStatus.textContent = 'Unable to retrieve location.';
+                            break;
+                    }
+                }
+            );
+        });
+
+        // Service selection handling
         document.querySelectorAll('.service-option').forEach(option => {
             option.addEventListener('click', function() {
                 // Remove selected class from all options
                 document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                
                 // Add selected class to clicked option
                 this.classList.add('selected');
-
+                
                 selectedService = this.dataset.service;
                 selectedPrice = parseInt(this.dataset.price);
-
-                    // Update hidden fields for form submission
-                    document.getElementById('selectedServiceInput').value = selectedService;
-                    document.getElementById('selectedPriceInput').value = selectedPrice;
-
-                updateBookingSummary();
-                clearError('serviceError');
+                
+                // Show confirmation modal
+                showConfirmationModal();
             });
         });
 
-        // Update booking summary
+        function showConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            const detailsDiv = document.getElementById('selectedServiceDetails');
+            
+            const serviceNames = {
+                'basic': 'Basic Exterior Wash',
+                'full': 'Full Interior + Exterior',
+                'premium': 'Premium Detailing',
+                'monthly': 'Monthly Package'
+            };
+
+            const serviceDurations = {
+                'basic': '30-40 minutes',
+                'full': '45-60 minutes',
+                'premium': '60-90 minutes',
+                'monthly': '4 services per month'
+            };
+            
+            detailsDiv.innerHTML = `
+                <h4 class="text-lg font-bold text-gray-800 mb-2">${serviceNames[selectedService]}</h4>
+                <p class="text-2xl font-bold text-blue-600 mb-2">₹${selectedPrice}</p>
+                <p class="text-sm text-gray-600 mb-3">Duration: ${serviceDurations[selectedService]}</p>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        // Confirmation modal handlers
+        document.getElementById('cancelSelection').addEventListener('click', function() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+            document.querySelectorAll('.service-option').forEach(c => c.classList.remove('selected'));
+            selectedService = null;
+            selectedPrice = 0;
+        });
+
+        document.getElementById('proceedToBooking').addEventListener('click', function() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+            showStep2();
+        });
+
+        function showStep2() {
+            updateStepIndicator(2);
+            
+            document.getElementById('stepTitle').textContent = 'Enter Your Details';
+            document.getElementById('stepDescription').textContent = 'Fill in your information to complete the booking';
+            
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            
+            updateBookingSummary();
+            
+            // Set hidden form values
+            document.getElementById('selectedServiceInput').value = selectedService;
+            document.getElementById('selectedPriceInput').value = selectedPrice;
+            
+            currentStep = 2;
+        }
+
+        // Change service button
+        document.getElementById('changeService').addEventListener('click', function() {
+            updateStepIndicator(1);
+            document.getElementById('stepTitle').textContent = 'Choose Your Service';
+            document.getElementById('stepDescription').textContent = 'Select the car wash service that best fits your needs';
+            
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+            
+            currentStep = 1;
+        });
+
         function updateBookingSummary() {
-            const summaryDiv = document.getElementById('bookingSummary');
-            const costBreakdown = document.getElementById('costBreakdown');
-
-            if (!selectedService) return;
-
             const serviceNames = {
                 'basic': 'Basic Exterior Wash',
                 'full': 'Full Interior + Exterior',
@@ -587,29 +719,46 @@ const serviceTime = document.getElementById("serviceTime");
                 'monthly': '4 services per month'
             };
 
-            summaryDiv.innerHTML = `
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="font-semibold">${serviceNames[selectedService]}</h4>
-                            <p class="text-sm text-gray-500">Duration: ${serviceDurations[selectedService]}</p>
-                        </div>
-                        <span class="font-bold text-blue-600">₹${selectedPrice}</span>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('serviceCost').textContent = `₹${selectedPrice}`;
-            document.getElementById('totalCost').textContent = `₹${selectedPrice}`;
-            costBreakdown.classList.remove('hidden');
+            if (selectedService) {
+                document.getElementById('summaryServiceName').textContent = serviceNames[selectedService];
+                document.getElementById('summaryPrice').textContent = selectedPrice;
+                document.getElementById('summaryDuration').textContent = `Duration: ${serviceDurations[selectedService]}`;
+                
+                document.getElementById('selectedServiceSummary').innerHTML = `
+                    <h4 class="font-semibold text-blue-800">${serviceNames[selectedService]}</h4>
+                    <p class="text-sm text-gray-600">Duration: ${serviceDurations[selectedService]}</p>
+                    <p class="text-lg font-bold text-blue-600 mt-2">₹${selectedPrice}</p>
+                `;
+                
+                document.getElementById('servicePrice').textContent = selectedPrice;
+                document.getElementById('totalPrice').textContent = selectedPrice;
+            }
         }
 
-        // Form validation functions
+        function updateStepIndicator(step) {
+            const indicators = document.querySelectorAll('.step-indicator');
+            
+            indicators.forEach((indicator, index) => {
+                const stepNum = index + 1;
+                
+                if (stepNum < step) {
+                    indicator.classList.add('completed');
+                    indicator.classList.remove('active');
+                } else if (stepNum === step) {
+                    indicator.classList.add('active');
+                    indicator.classList.remove('completed');
+                } else {
+                    indicator.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        // Form validation
         function validateField(fieldId, validator, errorId) {
             const field = document.getElementById(fieldId);
             const value = field.value.trim();
             const isValid = validator(value);
-
+            
             if (isValid) {
                 field.classList.remove('error');
                 field.classList.add('success');
@@ -640,7 +789,6 @@ const serviceTime = document.getElementById("serviceTime");
                 if (!value) return false;
                 const selected = new Date(value);
                 const today = new Date();
-                // Set both dates to midnight to compare just the date part
                 today.setHours(0, 0, 0, 0);
                 selected.setHours(0, 0, 0, 0);
                 return selected >= today;
@@ -648,51 +796,9 @@ const serviceTime = document.getElementById("serviceTime");
             time: (value) => value !== ''
         };
 
-        // Real-time validation
-        document.getElementById('customerName').addEventListener('input', function() {
-            if (this.value.trim()) {
-                if (!validateField('customerName', validators.name, 'nameError')) {
-                    showError('nameError', 'Name must be at least 2 characters long');
-                }
-            }
-        });
-
-        document.getElementById('customerPhone').addEventListener('input', function() {
-            if (this.value.trim()) {
-                if (!validateField('customerPhone', validators.phone, 'phoneError')) {
-                    showError('phoneError', 'Please enter a valid phone number');
-                }
-            }
-        });
-
-        document.getElementById('customerEmail').addEventListener('input', function() {
-            if (this.value.trim()) {
-                if (!validateField('customerEmail', validators.email, 'emailError')) {
-                    showError('emailError', 'Please enter a valid email address');
-                }
-            }
-        });
-
-        document.getElementById('serviceAddress').addEventListener('input', function() {
-            if (this.value.trim()) {
-                if (!validateField('serviceAddress', validators.address, 'addressError')) {
-                    showError('addressError', 'Please provide a complete address with landmark');
-                }
-            }
-        });
-
-        // Form submission
+        // Form submission - let it submit to Web3Forms naturally
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            // Don't prevent default initially - let form submit if validation passes
-
-            // Validate all fields
             let isValid = true;
-
-            // Check service selection
-            if (!selectedService) {
-                showError('serviceError', 'Please select a service');
-                isValid = false;
-            }
 
             // Validate required fields
             if (!validateField('customerName', validators.name, 'nameError')) {
@@ -728,62 +834,77 @@ const serviceTime = document.getElementById("serviceTime");
             }
 
             if (!isValid) {
-                // Scroll to first error
                 const firstError = document.querySelector('.error-message:not(:empty)');
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
                 e.preventDefault();
-            return;
+                return;
             }
 
             // Show loading state
             const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerHTML = 'Processing...';
+            submitBtn.innerHTML = '<i data-feather="loader" class="w-5 h-5 inline mr-2 animate-spin"></i>Processing...';
             submitBtn.disabled = true;
-
-            // Form will now submit to Web3Forms naturally
-            // The form action="https://api.web3forms.com/submit" will handle it
+            feather.replace();
+            
+            // Form will submit naturally to Web3Forms
+            // Remove the preventDefault() in production to allow actual submission
         });
 
-        // Success modal functions
-        function showSuccessModal() {
-            const modal = document.getElementById('successModal');
-            const detailsDiv = document.getElementById('bookingDetails');
+        // Dynamic time slot handling
+        const serviceDate = document.getElementById('serviceDate');
+        const serviceTime = document.getElementById('serviceTime');
 
-            const serviceNames = {
-                'basic': 'Basic Exterior Wash',
-                'full': 'Full Interior + Exterior',
-                'premium': 'Premium Detailing',
-                'monthly': 'Monthly Package'
-            };
-
-            detailsDiv.innerHTML = `
-                <p><strong>Service:</strong> ${serviceNames[selectedService]}</p>
-                <p><strong>Date:</strong> ${document.getElementById('serviceDate').value}</p>
-                <p><strong>Time:</strong> ${document.getElementById('serviceTime').value}</p>
-                <p><strong>Total:</strong> ₹${selectedPrice}</p>
-            `;
-
-            modal.classList.remove('hidden');
+        function updateTimeSlots() {
+            const selectedDate = new Date(serviceDate.value);
+            const today = new Date();
+            
+            // Reset - show all slots first
+            Array.from(serviceTime.options).forEach(opt => opt.style.display = 'block');
+            
+            // If user selected today's date, hide past slots
+            if (selectedDate.getFullYear() === today.getFullYear() && 
+                selectedDate.getMonth() === today.getMonth() && 
+                selectedDate.getDate() === today.getDate()) {
+                
+                const currentHour = today.getHours();
+                const currentMinute = today.getMinutes();
+                const currentTotalMinutes = currentHour * 60 + currentMinute;
+                
+                Array.from(serviceTime.options).forEach(opt => {
+                    if (opt.value) {
+                        // Extract slot times (e.g., "7am-9am")
+                        const [startStr, endStr] = opt.value.split('-');
+                        
+                        function parseTime(str) {
+                            let hour = parseInt(str);
+                            let isPM = str.includes('pm');
+                            if (isPM && hour !== 12) hour += 12;
+                            if (!isPM && hour === 12) hour = 0; // handle 12am
+                            return hour * 60; // convert to minutes
+                        }
+                        
+                        const endMinutes = parseTime(endStr);
+                        
+                        // Hide if slot has already passed
+                        if (currentTotalMinutes >= endMinutes) {
+                            opt.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // If currently selected slot is hidden, reset dropdown
+                if (serviceTime.selectedOptions[0].style.display === 'none') {
+                    serviceTime.value = '';
+                }
+            }
         }
 
-        function closeSuccessModal() {
-            document.getElementById('successModal').classList.add('hidden');
-            // Reset form
-            document.getElementById('bookingForm').reset();
-            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
-            document.getElementById('bookingSummary').innerHTML = `
-                <div class="text-center py-8 text-gray-500">
-                    <i data-feather="clipboard" class="w-12 h-12 mx-auto mb-4 text-gray-400"></i>
-                    <p>Select a service to see booking summary</p>
-                </div>
-            `;
-            document.getElementById('costBreakdown').classList.add('hidden');
-            selectedService = null;
-            selectedPrice = 0;
-            feather.replace();
-        }
+        serviceDate.addEventListener('change', updateTimeSlots);
+        
+        // Initialize time slots on page load
+        updateTimeSlots();
     </script>
 </body>
 </html>
