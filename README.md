@@ -165,10 +165,10 @@ Currently serving:
 ## 📞 Contact Information
 
 **WashX Car Wash Service**
-- 📱 Phone: +91 8805173650 (24/7 Emergency)
+- 📱 Phone: +91 7020731381 (24/7 Emergency)
 - 📧 Email: washxcare@gmail.com
 - 🌐 Website: www.washx.com
-- 💬 WhatsApp: +91 8805173650
+- 💬 WhatsApp: +91 7020731381
 - 📍 Service Areas: Mumbai | Pune | Bangalore
 
 **Business Hours:**
